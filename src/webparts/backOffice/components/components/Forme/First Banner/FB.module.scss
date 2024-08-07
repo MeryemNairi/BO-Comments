@@ -1,0 +1,70 @@
+.FB_main {
+    // Your styles for the main container
+    width: 100%;
+    position: relative;
+    max-width: 1920px;
+    height: 350px;
+    background-color: #F5F9FF;
+}
+  
+.FB_container {
+    // Your styles for the container
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+}
+  
+  .FB_background {
+    position: relative;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 1fr 1fr;
+
+  }
+  
+  .left {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end; /* Aligne les éléments en bas */
+    justify-content: flex-start; /* Aligne les éléments à gauche */
+  
+    svg {
+      opacity: 0.2; 
+      position: absolute; 
+      bottom: 0; 
+      left: 0; 
+    }
+  }
+  
+  
+  .right {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  
+  .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    p{
+        width: 60%;
+        font-size: 28px;
+        font-weight: 400;
+        color: #002362;
+        text-align: center;
+    }
+  }
+  
