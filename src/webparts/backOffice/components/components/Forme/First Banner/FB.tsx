@@ -54,9 +54,9 @@ const FirstBanner: React.FC<IFBProps> = ({ context }) => {
         </div>
         <div className={styles.content}>
           <p>
-            <span style={{ fontWeight: 700 }}>Bienvenue dans votre espace de gestion des commentaires,  {userDisplayName} !  </span><br />
+            <span style={{ fontWeight: 700 }}>Bienvenue dans votre espace dédié à la gestion des données sur la page Communication,  {userDisplayName} !  </span><br />
 
-            Votre rôle clé dans la gestion des commentaires des collaborateurs assure une communication fluide et efficace sur notre intranet.</p>
+            Votre rôle essentiel dans l'enrichissement et l'optimisation des informations sur notre intranet est crucial. Grâce à votre engagement, nous pouvons offrir des informations précises et pertinentes.</p>
         </div>
       </div>
     </div>

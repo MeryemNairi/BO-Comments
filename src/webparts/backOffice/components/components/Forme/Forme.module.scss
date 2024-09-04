@@ -131,7 +131,7 @@
 }
 
 .sectionButton {
-  background-color: #03B586;
+  background-color: #2B466C;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -140,7 +140,7 @@
 }
 
 .sectionButton:hover {
-  background-color: #029a73;
+  background-color: #2b3b52;
 }
 
 .appleButton {
@@ -156,4 +156,11 @@
 
 .appleButton:hover {
   background-color: #333; /* Couleur de fond en survol pour le bouton Apple */
+}
+
+.svgContainer {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
 }

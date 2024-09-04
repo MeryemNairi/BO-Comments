@@ -3,8 +3,8 @@ import { sp } from '@pnp/sp'; // Assurez-vous que @pnp/sp est installé et confi
 // Définir la structure des données de ContactV3
 export interface IContactData {
     Id?: number;
-    Comment: string;
-    Date: Date;
+    comment: string;
+    date: Date;
     User: string;
 }
 
@@ -14,8 +14,8 @@ export const getContacts = async (): Promise<IContactData[]> => {
         const items = await sp.web.lists.getByTitle('ContactV3').items.getAll();
         return items.map(item => ({
             Id: item.Id,
-            Comment: item.Comment,
-            Date: new Date(item.Date),
+            comment: item.comment,
+            date: new Date(item.date),
             User: item.User,
         }));
     } catch (error) {
@@ -24,44 +24,3 @@ export const getContacts = async (): Promise<IContactData[]> => {
     }
 };
 
-// Fonction pour ajouter un nouveau contact
-export const postContact = async (contact: IContactData): Promise<void> => {
-    try {
-        await sp.web.lists.getByTitle('ContactV3').items.add({
-            Comment: contact.Comment,
-            Date: contact.Date.toISOString(),
-            User: contact.User,
-        });
-    } catch (error) {
-        console.error('Error posting contact:', error);
-        throw error;
-    }
-};
-
-// Fonction pour supprimer un contact
-export const deleteContact = async (contactId: number): Promise<void> => {
-    try {
-        await sp.web.lists.getByTitle('ContactV3').items.getById(contactId).delete();
-    } catch (error) {
-        console.error('Error deleting contact:', error);
-        throw error;
-    }
-};
-
-// Fonction pour mettre à jour un contact
-export const updateContact = async (contact: IContactData): Promise<void> => {
-    try {
-        if (contact.Id) {
-            await sp.web.lists.getByTitle('ContactV3').items.getById(contact.Id).update({
-                Comment: contact.Comment,
-                Date: contact.Date.toISOString(),
-                User: contact.User,
-            });
-        } else {
-            throw new Error('Contact ID is required for update.');
-        }
-    } catch (error) {
-        console.error('Error updating contact:', error);
-        throw error;
-    }
-};
