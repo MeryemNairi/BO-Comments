@@ -1,166 +1,354 @@
 .spacing {
-  margin: 20px 0; /* Ajuste la valeur selon tes besoins */
+
+  margin: 20px 0;
+  /* Ajuste la valeur selon tes besoins */
+
 }
+
+
 
 .recordsTitle {
+
   color: #0A2142;
+
   border-bottom: 2px solid #82ABE7;
+
   width: 185px;
+
   font-weight: bold;
+
 }
+
+
 
 .recordField {
-  padding: 8px; /* Ajout de l'espace intérieur */
+
+  padding: 8px;
+  /* Ajout de l'espace intérieur */
+
 }
+
+
 
 .recordsTable {
+
   width: 100%;
+
   border-collapse: collapse;
-  margin: 20px 0; /* Espacement autour du tableau */
+
+  margin: 20px 0;
+  /* Espacement autour du tableau */
+
 }
+
+
 
 .recordsTable th,
+
 .recordsTable td {
+
   border: 1px solid #ddd;
-  padding: 12px; /* Espacement intérieur */
+
+  padding: 12px;
+  /* Espacement intérieur */
+
   text-align: left;
+
 }
+
+
 
 .recordsTable th {
+
   background-color: #f4f4f4;
+
   color: #0A2142;
+
   font-weight: bold;
+
 }
+
+
 
 .recordRow:nth-child(even) {
+
   background-color: #f9f9f9;
+
 }
+
+
 
 .recordField:nth-child(1),
+
 .recordField:nth-child(3),
+
 .recordField:nth-child(4) {
+
   font-weight: bold;
+
   color: #0A2142;
+
 }
+
+
 
 .recordActions {
+
   text-align: center;
+
 }
+
+
 
 .deleteIcon {
+
   cursor: pointer;
+
   transition: fill 0.3s ease;
-  width: 24px; /* Ajuster la taille de l'icône */
-  height: 24px; /* Ajuster la taille de l'icône */
+
+  width: 24px;
+  /* Ajuster la taille de l'icône */
+
+  height: 24px;
+  /* Ajuster la taille de l'icône */
+
 }
+
+
 
 .deleteIcon:hover {
-  fill: #cc0000; /* Changer la couleur lors du survol */
+
+  fill: #cc0000;
+  /* Changer la couleur lors du survol */
+
 }
+
+
 
 .button {
+
   border-radius: 20px;
+
   background-color: #2B466C;
+
   color: #FFFFFF;
+
   border: none;
+
   padding: 10px 20px;
+
   margin: 0;
+
   cursor: pointer;
+
   transition: background-color 0.3s;
+
   font-size: 12px;
+
   font-weight: bold;
+
   font-family: 'Inter', sans-serif;
+
   display: flex;
+
   align-items: center;
+
 }
+
+
 
 .button:hover {
+
   background-color: #9EBBE3;
+
 }
+
+
 
 .button2 {
+
   border-radius: 20px;
+
   background-color: #2B466C;
+
   color: #FFFFFF;
+
   border: none;
+
   padding: 12px 24px;
+
   margin: 0;
+
   cursor: pointer;
+
   transition: background-color 0.3s;
+
   font-size: 14px;
+
   font-weight: bold;
+
   font-family: 'Inter', sans-serif;
+
   display: flex;
+
   align-items: center;
+
   min-width: 120px;
+
   min-height: 40px;
+
   justify-content: center;
+
 }
+
+
 
 .button2:hover {
+
   background-color: #9EBBE3;
+
 }
+
+
 
 .custom-select {
+
   border-radius: 5px;
+
   border: 1px solid #ccc;
+
   padding: 8px;
+
   font-size: 14px;
+
   width: 200px;
+
   background-color: #ffffff;
+
   cursor: pointer;
+
 }
+
+
 
 .custom-select:focus {
+
   outline: none;
+
   border-color: #2B466C;
+
 }
+
+
 
 .statusSelect {
+
   width: 100px;
+
   padding: 5px;
+
   border: 1px solid #ccc;
+
   border-radius: 4px;
+
 }
 
+// Forme.module.scss
 
-.buttonContainer {
+
+
+.contentContainer {
+
   display: flex;
-  justify-content: space-around;
-  margin: 20px 0;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  margin-top: 20px; // Ajustez si nécessaire
+
 }
 
-.sectionButton {
-  background-color: #2B466C;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-weight: bold;
-}
 
-.sectionButton:hover {
-  background-color: #2b3b52;
-}
-
-.appleButton {
-  background-color: #000; /* Couleur de fond pour le bouton Apple */
-  color: #fff; /* Couleur du texte pour le bouton Apple */
-  border: none;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.appleButton:hover {
-  background-color: #333; /* Couleur de fond en survol pour le bouton Apple */
-}
 
 .svgContainer {
   display: flex;
   justify-content: center; /* Centre horizontalement */
   align-items: center; /* Centre verticalement */
-  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+}
+
+
+.buttonContainer {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px; // Ajustez l'espace entre les boutons
+
+}
+
+
+
+.sectionButton {
+
+  padding: 10px 20px;
+
+  background-color: #374b68;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  transition: background-color 0.3s ease;
+
+}
+
+
+
+.sectionButton:hover {
+
+  background-color: #2b3b52;
+
+}
+
+
+
+
+
+.appleButton {
+
+  background-color: #000;
+  /* Couleur de fond pour le bouton Apple */
+
+  color: #fff;
+  /* Couleur du texte pour le bouton Apple */
+
+  border: none;
+
+  padding: 10px 20px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  border-radius: 5px;
+
+  transition: background-color 0.3s;
+
+}
+
+
+
+.appleButton:hover {
+
+  background-color: #333;
+  /* Couleur de fond en survol pour le bouton Apple */
+
 }

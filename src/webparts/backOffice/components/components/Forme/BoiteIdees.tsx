@@ -30,7 +30,7 @@ export const BoiteIdees: React.FC = () => {
         <div className={styles.spacing}></div>
 
         <div>
-          <h2 className={styles.recordsTitle}>Contacts</h2>
+          <h2 className={styles.recordsTitle}>Boîte à idées</h2>
           <div className={styles.recordsContainer}>
             {contacts.map((contact) => (
               <div key={contact.Id} className={styles.record}>
