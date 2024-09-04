@@ -1,53 +1,17 @@
 import * as React from 'react';
-import { IFormProps, ICommentData } from './IFormProps';
-import { getComments, deleteComment, updateCommentStatus } from './FormeService'; // Ensure the path is correct
-import styles from './Forme.module.scss';
+import { IFormProps } from './IFormProps';
 import Navbar from '../../Header/navbar';
 import Footer from './NewFooter/Footer';
 import FirstBanner from './First Banner/FB';
+import { Comments } from './Comments';
+import { Events } from './Events';
+import { UpcomingEvents } from './UpcomingEvents';
+import { BoiteIdees } from './BoiteIdees'; // Importer le nouveau composant
+
+import styles from './Forme.module.scss';
 
 export const Forme: React.FC<IFormProps> = ({ context }) => {
-
-  const [comments, setComments] = React.useState<ICommentData[]>([]);
-
-  React.useEffect(() => {
-    fetchComments();
-  }, []);
-
-  const fetchComments = async () => {
-    try {
-      const commentData = await getComments();
-      setComments(commentData);
-    } catch (error) {
-      console.error('Error fetching comments:', error);
-    }
-  };
-
-  const handleDeleteComment = async (id: number) => {
-    if (window.confirm('Are you sure you want to delete this comment?')) {
-      try {
-        await deleteComment(id);
-        alert('Comment deleted successfully!');
-        fetchComments();
-      } catch (error) {
-        console.error('Error deleting comment:', error);
-        alert('An error occurred while deleting the comment. Please try again.');
-      }
-    }
-  };
-
-  const handleStatusChange = async (id: number, newStatus: 'valid' | 'invalid' | '') => {
-    if (newStatus) { // Ensure that the status is not an empty string
-      try {
-        await updateCommentStatus(id, newStatus);
-        alert('Comment status updated successfully!');
-        fetchComments();
-      } catch (error) {
-        console.error('Error updating comment status:', error);
-        alert('An error occurred while updating the comment status. Please try again.');
-      }
-    }
-  };
+  const [selectedSection, setSelectedSection] = React.useState<'comments' | 'events' | 'upevents' | 'boiteidees'>('comments');
 
   return (
     <>
@@ -55,55 +19,25 @@ export const Forme: React.FC<IFormProps> = ({ context }) => {
         <Navbar />
         <FirstBanner context={context} />
         <div style={{ width: '100%', maxWidth: '900px', margin: '0 auto' }}>
-          <h2 className={styles.recordsTitle}>Comments</h2>
-          <table className={styles.recordsTable}>
-            <thead>
-              <tr>
-                <th>Comment</th>
-                <th>Date</th>
-                <th>User</th>
-                <th>Event</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {comments.map((comment, index) => (
-                <tr key={index} className={styles.recordRow}>
-                  <td className={styles.recordField}>{comment.comment}</td>
-                  <td className={styles.recordField}>{comment.date.toLocaleDateString()}</td>
-                  <td className={styles.recordField}>{comment.User}</td>
-                  <td className={styles.recordField}>{comment.newsNews}</td>
-                  <td className={styles.recordField}>
-                    <select
-                      value={comment.status || ''} // Default to empty string if status is undefined
-                      onChange={(e) => handleStatusChange(comment.id, e.target.value as 'valid' | 'invalid' | '')}
-                      className={styles.statusSelect}
-                    >
-                      <option value="">Select</option> {/* Default option */}
-                      <option value="valid">Valid</option>
-                      <option value="invalid">Invalid</option>
-                    </select>
-                  </td>
-                  <td className={styles.recordActions}>
-                    <svg
-                      width="28"
-                      height="28"
-                      viewBox="0 0 42 42"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      onClick={() => handleDeleteComment(comment.id)}
-                      className={styles.deleteIcon}
-                    >
-                      <path d="M33.25 7H27.125L25.375 5.25H16.625L14.875 7H8.75V10.5H33.25M10.5 33.25C10.5 34.1783 10.8687 35.0685 11.5251 35.7249C12.1815 36.3813 13.0717 36.75 14 36.75H28C28.9283 36.75 29.8185 36.3813 30.4749 35.7249C31.1313 35.0685 31.5 34.1783 31.5 33.25V12.25H10.5V33.25Z" fill="#FF5454" />
-                    </svg>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className={styles.buttonContainer}>
+            <button onClick={() => setSelectedSection('events')} className={styles.sectionButton}>
+              Events
+            </button>
+            <button onClick={() => setSelectedSection('comments')} className={styles.sectionButton}>
+              Comments
+            </button>
+            <button onClick={() => setSelectedSection('upevents')} className={styles.sectionButton}>
+              UpEvents
+            </button>
+            <button onClick={() => setSelectedSection('boiteidees')} className={styles.sectionButton}>
+              Boîte d'idées
+            </button>
+          </div>
+          {selectedSection === 'events' && <Events />}
+          {selectedSection === 'comments' && <Comments />}
+          {selectedSection === 'upevents' && <UpcomingEvents />}
+          {selectedSection === 'boiteidees' && <BoiteIdees />} {/* Render Boîte d'idées */}
         </div>
-
         <Footer />
       </div>
     </>
