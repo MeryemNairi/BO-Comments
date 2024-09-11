@@ -29,8 +29,6 @@ const FirstBanner: React.FC<IFBProps> = ({ context }) => {
 
 
   return (
-
-
     <div className={styles.FB_main}>
       <div className={styles.FB_container}>
         <div className={styles.FB_background}>
