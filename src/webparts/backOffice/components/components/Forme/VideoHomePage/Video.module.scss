@@ -1,0 +1,58 @@
+.videoManager {
+    padding: 20px;
+  
+    h2, h3 {
+      color: #333;
+    }
+  
+    .uploadSection, .videoList {
+      margin-top: 20px;
+    }
+  
+    .inputTitle, .inputFile {
+      display: block;
+      margin-top: 10px;
+      padding: 8px;
+      width: 100%;
+      max-width: 400px;
+    }
+  
+    .uploadButton, .deleteButton {
+      margin-top: 10px;
+      padding: 8px 12px;
+      color: white;
+      background-color: #03B586;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+      &:hover {
+        background-color: #029a70;
+      }
+    }
+  
+    .videoItem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+      padding: 10px;
+      background: #f5f5f5;
+      border-radius: 4px;
+  
+      span {
+        font-size: 1em;
+        color: #333;
+      }
+    }
+  }
+  
+  .videoLink {
+    color: #0366d6; // Adjust color as needed
+    text-decoration: underline;
+  
+    &:hover {
+      color: #02467e; // Adjust hover color if needed
+    }
+  }
+  

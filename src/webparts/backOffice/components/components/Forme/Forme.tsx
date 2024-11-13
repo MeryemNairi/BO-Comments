@@ -9,12 +9,13 @@ import { UpcomingEvents } from './UpcomingEvents';
 import { BoiteIdees } from './BoiteIdees'; // Importer le nouveau composant
 import { EventsHomePage } from './BestOff/UpcomingEvents';
 import { EventsHome } from './ImgsNews/UpcomingEvents';
-import {BannerImg} from './BannerImg/BannerImg';
+import { BannerImg } from './BannerImg/BannerImg';
+import Video from './VideoHomePage/Video'
 
 import styles from './Forme.module.scss';
 
 export const Forme: React.FC<IFormProps> = ({ context }) => {
-  const [selectedSection, setSelectedSection] = React.useState<'comments' | 'events' | 'upevents' | 'boiteidees' | 'EventsHomePage' |'EventsHome' |'BannerImg' | 'default'>('default'); // Ajout de 'default'
+  const [selectedSection, setSelectedSection] = React.useState<'comments' | 'events' | 'upevents' | 'boiteidees' | 'EventsHomePage' | 'EventsHome' | 'BannerImg' | 'Video' | 'default'>('default'); // Ajout de 'default'
 
   return (
     <>
@@ -40,10 +41,13 @@ export const Forme: React.FC<IFormProps> = ({ context }) => {
             Best Off
           </button>
           <button onClick={() => setSelectedSection('EventsHome')} className={styles.sectionButton}>
-          EventsHome
+            EventsHome
           </button>
           <button onClick={() => setSelectedSection('BannerImg')} className={styles.sectionButton}>
-          BannerImg
+            BannerImg
+          </button>
+          <button onClick={() => setSelectedSection('Video')} className={styles.sectionButton}>
+            Video
           </button>
 
         </div>
@@ -65,6 +69,8 @@ export const Forme: React.FC<IFormProps> = ({ context }) => {
               {selectedSection === 'EventsHomePage' && <EventsHomePage />}
               {selectedSection === 'EventsHome' && <EventsHome />}
               {selectedSection === 'BannerImg' && <BannerImg />}
+              {selectedSection === 'Video' && <Video context={context} />}
+
 
 
 
