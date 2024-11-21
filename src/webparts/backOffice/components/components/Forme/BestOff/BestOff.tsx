@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { IUpEventData, getUpcomingEvents, postUpcomingEvent, deleteUpcomingEvent, updateUpcomingEvent, uploadImage } from './UpEventsService';
+import { IUpEventData, getUpcomingEvents, postUpcomingEvent, deleteUpcomingEvent, updateUpcomingEvent, uploadImage } from './BestOffService';
 import styles from './Events.module.scss';
 
 // Composant pour gérer les événements à venir
-export const EventsHomePage: React.FC = () => {
+export const BestOff: React.FC = () => {
   // State pour gérer les données des événements et les entrées du formulaire
   const [events, setEvents] = React.useState<IUpEventData[]>([]);
   const [newEvent, setNewEvent] = React.useState<IUpEventData>({

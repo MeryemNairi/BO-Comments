@@ -1,6 +1,14 @@
 .spacing {
     margin: 20px 0; /* Ajuste la valeur selon tes besoins */
   }
+
+  .imagePreview {
+    max-width: 200px; /* Adjust the maximum width */
+    max-height: 200px; /* Adjust the maximum height */
+    border-radius: 8px; /* Add rounded corners if needed */
+    object-fit: cover; /* Ensure the image fits within the container */
+  }
+  
   
   .recordsTitle {
     color: #0A2142;

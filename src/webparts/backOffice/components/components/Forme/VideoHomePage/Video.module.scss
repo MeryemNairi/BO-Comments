@@ -56,3 +56,43 @@
     }
   }
   
+  .renameSection {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+.updateButton {
+    background-color: #03B586;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: #028d6e;
+    }
+}
+
+.editButton {
+    background-color: #028d6e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: #027a5e;
+    }
+}
+
+/* Video.module.scss */
+.titleInput {
+    padding: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    border-radius: 4px;
+}

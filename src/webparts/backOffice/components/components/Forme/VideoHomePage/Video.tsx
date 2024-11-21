@@ -9,6 +9,7 @@ interface IVideoProps {
 const Video: React.FC<IVideoProps> = (props: IVideoProps) => {
     const [videos, setVideos] = React.useState<{ url: string; title: string }[]>([]);
     const [newVideoFile, setNewVideoFile] = React.useState<File | null>(null);
+    const [newVideoTitle, setNewVideoTitle] = React.useState<string>(''); // State for video title
 
     React.useEffect(() => {
         fetchVideosFromSharePoint();
@@ -31,21 +32,20 @@ const Video: React.FC<IVideoProps> = (props: IVideoProps) => {
                 title: item.Name.split('.')[0], // Removing the file extension for display
             }));
             setVideos(videoData);
-
         } catch (error) {
             console.error('Erreur lors de la récupération des vidéos :', error);
         }
     };
 
     const handleVideoUpload = async () => {
-        if (!newVideoFile) {
-            alert('Veuillez sélectionner un fichier à télécharger.');
+        if (!newVideoFile || !newVideoTitle.trim()) {
+            alert('Veuillez sélectionner un fichier et ajouter un titre pour la vidéo.');
             return;
         }
-    
-        const encodedFileName = encodeURIComponent(newVideoFile.name);
-        const uploadUrl = `${props.context.pageContext.web.absoluteUrl}/_api/web/GetFolderByServerRelativeUrl('/sites/Cnet/Assets/HomePage_Vd')/Files/add(url='${encodedFileName}', overwrite=true)`;
-    
+
+        const encodedTitle = encodeURIComponent(newVideoTitle.trim());
+        const uploadUrl = `${props.context.pageContext.web.absoluteUrl}/_api/web/GetFolderByServerRelativeUrl('/sites/Cnet/Assets/HomePage_Vd')/Files/add(url='${encodedTitle}.mp4', overwrite=true)`;
+
         try {
             const digestResponse = await fetch(`${props.context.pageContext.web.absoluteUrl}/_api/contextinfo`, {
                 method: 'POST',
@@ -55,10 +55,9 @@ const Video: React.FC<IVideoProps> = (props: IVideoProps) => {
             });
             const digestData = await digestResponse.json();
             const requestDigest = digestData.FormDigestValue;
-    
+
             console.log('Starting upload to:', uploadUrl);
-    
-            // Ajout de l'en-tête X-RequestDigest
+
             const response = await fetch(uploadUrl, {
                 method: 'POST',
                 body: newVideoFile,
@@ -68,10 +67,11 @@ const Video: React.FC<IVideoProps> = (props: IVideoProps) => {
                     'X-RequestDigest': requestDigest,
                 },
             });
-    
+
             if (response.ok) {
                 alert('La vidéo a été téléchargée avec succès!');
-                setNewVideoFile(null); // Reset file after successful upload
+                setNewVideoFile(null);
+                setNewVideoTitle(''); // Reset title after successful upload
                 fetchVideosFromSharePoint(); // Refresh the video list
             } else {
                 alert('Erreur lors du téléchargement de la vidéo.');
@@ -81,11 +81,10 @@ const Video: React.FC<IVideoProps> = (props: IVideoProps) => {
             console.error('Erreur lors du téléchargement de la vidéo :', error);
         }
     };
-    
 
     const handleVideoDelete = async (videoTitle: string) => {
         try {
-            const deleteUrl = `${props.context.pageContext.web.absoluteUrl}/_api/web/GetFileByServerRelativeUrl('/sites/Cnet/Assets/HomePage_Vd/${videoTitle}')`;
+            const deleteUrl = `${props.context.pageContext.web.absoluteUrl}/_api/web/GetFileByServerRelativeUrl('/sites/Cnet/Assets/HomePage_Vd/${videoTitle}.mp4')`;
             const response = await fetch(deleteUrl, {
                 method: 'DELETE',
                 headers: {
@@ -112,6 +111,13 @@ const Video: React.FC<IVideoProps> = (props: IVideoProps) => {
             <div className={styles.uploadSection}>
                 <h3>Ajouter une nouvelle vidéo</h3>
                 <input
+                    type="text"
+                    placeholder="Titre de la vidéo"
+                    value={newVideoTitle}
+                    onChange={(e) => setNewVideoTitle(e.target.value)}
+                    className={styles.inputTitle}
+                />
+                <input
                     type="file"
                     accept="video/*"
                     onChange={(e) => setNewVideoFile(e.target.files ? e.target.files[0] : null)}
@@ -132,7 +138,6 @@ const Video: React.FC<IVideoProps> = (props: IVideoProps) => {
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };

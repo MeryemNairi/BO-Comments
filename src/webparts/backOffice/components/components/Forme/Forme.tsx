@@ -7,7 +7,7 @@ import { Comments } from './Comments';
 import { Events } from './Events';
 import { UpcomingEvents } from './UpcomingEvents';
 import { BoiteIdees } from './BoiteIdees'; // Importer le nouveau composant
-import { EventsHomePage } from './BestOff/UpcomingEvents';
+import { BestOff } from './BestOff/BestOff';
 import { EventsHome } from './ImgsNews/UpcomingEvents';
 import { BannerImg } from './BannerImg/BannerImg';
 import Video from './VideoHomePage/Video'
@@ -15,7 +15,7 @@ import Video from './VideoHomePage/Video'
 import styles from './Forme.module.scss';
 
 export const Forme: React.FC<IFormProps> = ({ context }) => {
-  const [selectedSection, setSelectedSection] = React.useState<'comments' | 'events' | 'upevents' | 'boiteidees' | 'EventsHomePage' | 'EventsHome' | 'BannerImg' | 'Video' | 'default'>('default'); // Ajout de 'default'
+  const [selectedSection, setSelectedSection] = React.useState<'comments' | 'events' | 'upevents' | 'boiteidees' | 'BestOff' | 'EventsHome' | 'BannerImg' | 'Video' | 'default'>('default'); // Ajout de 'default'
 
   return (
     <>
@@ -37,7 +37,7 @@ export const Forme: React.FC<IFormProps> = ({ context }) => {
           <button onClick={() => setSelectedSection('boiteidees')} className={styles.sectionButton}>
             Boîte d'idées
           </button>
-          <button onClick={() => setSelectedSection('EventsHomePage')} className={styles.sectionButton}>
+          <button onClick={() => setSelectedSection('BestOff')} className={styles.sectionButton}>
             Best Off
           </button>
           <button onClick={() => setSelectedSection('EventsHome')} className={styles.sectionButton}>
@@ -66,7 +66,7 @@ export const Forme: React.FC<IFormProps> = ({ context }) => {
               {selectedSection === 'comments' && <Comments />}
               {selectedSection === 'upevents' && <UpcomingEvents />}
               {selectedSection === 'boiteidees' && <BoiteIdees />}
-              {selectedSection === 'EventsHomePage' && <EventsHomePage />}
+              {selectedSection === 'BestOff' && <BestOff />}
               {selectedSection === 'EventsHome' && <EventsHome />}
               {selectedSection === 'BannerImg' && <BannerImg />}
               {selectedSection === 'Video' && <Video context={context} />}

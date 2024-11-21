@@ -196,6 +196,12 @@
     }
   }
   
+  .imagePreview {
+    max-width: 200px; /* Adjust the maximum width */
+    max-height: 200px; /* Adjust the maximum height */
+    border-radius: 8px; /* Add rounded corners if needed */
+    object-fit: cover; /* Ensure the image fits within the container */
+  }
   
   
   .recordField {
