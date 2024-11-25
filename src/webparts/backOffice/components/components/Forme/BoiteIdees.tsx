@@ -6,7 +6,7 @@ import styles from './Events.module.scss';
 export const BoiteIdees: React.FC = () => {
   // State pour gérer les données des contacts et les entrées du formulaire
   const [contacts, setContacts] = React.useState<IContactData[]>([]);
-  
+
 
   // Récupérer les contacts lorsque le composant est monté
   React.useEffect(() => {
@@ -31,20 +31,28 @@ export const BoiteIdees: React.FC = () => {
 
         <div>
           <h2 className={styles.recordsTitle}>Boîte à idées</h2>
-          <div className={styles.recordsContainer}>
-            {contacts.map((contact) => (
-              <div key={contact.Id} className={styles.record}>
-                <div className={styles.recordField}>{contact.comment}</div>
-                <div className={styles.recordField}>{contact.date.toDateString()}</div>
-                <div className={styles.recordField}>{contact.User}</div>
-                <span className={styles.iconSpace}></span>
-
-              </div>
-            ))}
-          </div>
+          <table className={styles.recordsTable}>
+            <thead>
+              <tr>
+                <th>Commentaire</th>
+                <th>Date</th>
+                <th>Utilisateur</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contacts.map((contact) => (
+                <tr key={contact.Id} className={styles.recordRow}>
+                  <td className={styles.recordField}>{contact.comment}</td>
+                  <td className={styles.recordField}>{contact.date.toDateString()}</td>
+                  <td className={styles.recordField}>{contact.User}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+
   );
 };
 
