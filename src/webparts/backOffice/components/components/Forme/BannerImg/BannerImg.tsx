@@ -99,6 +99,7 @@ export const BannerImg: React.FC = () => {
               onChange={(e) => setImageFile(e.target.files ? e.target.files[0] : null)}
               className={styles.input}
             />
+            <div className={styles.spacing}></div>
             <button type="button" onClick={handleImageUpload} className={styles.button}>
               Upload Image
             </button>
@@ -108,9 +109,7 @@ export const BannerImg: React.FC = () => {
             <button type="submit" className={styles.button}>Post Event</button>
           </div>
         </form>
-
         <div className={styles.spacing}></div>
-
         <div>
           <h2 className={styles.recordsTitle}>Upcoming Events</h2>
           <table className={styles.recordsTable}>
@@ -134,7 +133,7 @@ export const BannerImg: React.FC = () => {
                           objectFit: 'cover', // Ajuste l'image pour qu'elle remplisse le carré sans se déformer
                           borderRadius: '5px', // Ajoute des coins arrondis
                           border: '1px solid #ddd', // Ajoute une bordure pour délimiter l'image
-                        }}                      />
+                        }} />
                     )}
                   </td>
                   <td className={styles.recordActions}>

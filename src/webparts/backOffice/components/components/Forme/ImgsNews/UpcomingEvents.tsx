@@ -57,7 +57,7 @@ export const EventsHome: React.FC = () => {
     e.preventDefault();
     try {
       await postUpcomingEvent(newEvent);
-      setNewEvent({ News:  '', ImgUrl: '' });
+      setNewEvent({ News: '', ImgUrl: '' });
       fetchEvents(); // Rafraîchir la liste des événements
     } catch (error) {
       console.error('Error posting upcoming event:', error);
@@ -111,6 +111,7 @@ export const EventsHome: React.FC = () => {
               onChange={(e) => setImageFile(e.target.files ? e.target.files[0] : null)}
               className={styles.input}
             />
+            <div className={styles.spacing}></div>
             <button type="button" onClick={handleImageUpload} className={styles.button}>
               Upload Image
             </button>
