@@ -5,12 +5,15 @@ import styles from './Events.module.scss';
 export const Events: React.FC = () => {
   // State to manage events data and the new event form input
   const [events, setEvents] = React.useState<IEventData[]>([]);
-  const [newEvent, setNewEvent] = React.useState<IEventData>({
-    News: '',
-    Description: '',
-    Date: new Date(),
-  });
-  const [, setSelectedEvent] = React.useState<IEventData | null>(null);
+ 
+const [newEvent, setNewEvent] = React.useState<IEventData>({
+  Id: undefined,  // Ajout de l'Id
+  News: '',
+  Description: '',
+  Date: new Date(),
+});
+
+  const [, ] = React.useState<IEventData | null>(null);
 
   // Fetch events when the component mounts
   React.useEffect(() => {
@@ -58,24 +61,34 @@ export const Events: React.FC = () => {
 
   // Handle event deletion
   const handleDelete = async (eventId: number) => {
-    try {
-      await deleteEvent(eventId);
-      fetchEvents(); // Refresh the event list after deletion
-    } catch (error) {
-      console.error('Error deleting event:', error);
+    // Afficher une boîte de dialogue de confirmation
+    const isConfirmed = window.confirm("Êtes-vous sûr de vouloir supprimer cet événement ?");
+    
+    if (isConfirmed) {
+        try {
+            await deleteEvent(eventId);
+            fetchEvents(); // Refresh the event list after deletion
+        } catch (error) {
+            console.error('Error deleting event:', error);
+        }
     }
   };
 
   // Handle event update
+  const [editingEvent, setEditingEvent] = React.useState<IEventData | null>(null);
+
   const handleUpdate = async (event: IEventData) => {
-    try {
-      setSelectedEvent(event); // Set the selected event
-      await updateEvent(event);
-      setSelectedEvent(null); // Clear the selected event after update
-      fetchEvents(); // Refresh the event list after update
-    } catch (error) {
-      console.error('Error updating event:', error);
-    }
+      if (editingEvent && editingEvent.Id === event.Id) {
+          try {
+              await updateEvent(editingEvent);
+              setEditingEvent(null);
+              fetchEvents();
+          } catch (error) {
+              console.error('Error updating event:', error);
+          }
+      } else {
+          setEditingEvent(event);
+      }
   };
 
   return (

@@ -95,13 +95,14 @@ export const BestOff: React.FC = () => {
           <div className={styles.inputField}>
             <input
               type="text"
-              name="Event"
+              name="EventsDesc"
               value={newEvent.EventsDesc}
               onChange={handleInputChange}
               placeholder="Event"
               required
               className={styles.input}
             />
+
           </div>
           <div className={styles.spacing}></div>
           <div className={styles.inputField}>

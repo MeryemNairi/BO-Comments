@@ -8,10 +8,13 @@ export interface IEventData {
     Date: Date;
 }
 
+// ... existing code ...
+
 export const getEvents = async (): Promise<IEventData[]> => {
     try {
         const items = await sp.web.lists.getByTitle('LatestNewsV2').items.getAll();
         return items.map(item => ({
+            Id: item.Id,  // Ajout de l'Id
             News: item.News,
             Description: item.Description,
             Date: new Date(item.Date),
@@ -21,6 +24,8 @@ export const getEvents = async (): Promise<IEventData[]> => {
         throw error;
     }
 };
+
+// ... existing code ...
 
 export const postEvent = async (event: IEventData): Promise<void> => {
     try {
